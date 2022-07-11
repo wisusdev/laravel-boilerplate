@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Frontend\Auth;
 
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
@@ -26,7 +26,7 @@ class AuthController extends Controller
 	protected string $redirectTo = RouteServiceProvider::HOME;
 
     public function showLoginForm() {
-        return view('auth.login');
+        return view('frontend.auth.login');
     }
 
     public function login(Request $request){
@@ -50,7 +50,7 @@ class AuthController extends Controller
     }
 
 	public function showRegistrationForm(){
-        return view('auth.register');
+        return view('frontend.auth.register');
     }
 
     public function register(Request $request){

@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Frontend\Auth;
 
+use App\Http\Controllers\Auth\response;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
-use App\Models\User;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class ForgotPasswordController extends Controller
@@ -25,7 +26,7 @@ class ForgotPasswordController extends Controller
 	 */
 	public function showLinkRequestForm()
 	{
-		return view('auth.password.email');
+		return view('frontend.auth.password.email');
 	}
 
 	/**
@@ -60,7 +61,7 @@ class ForgotPasswordController extends Controller
 	 * @return response()
 	 */
 	public function showResetForm($token) {
-		return view('auth.password.reset', ['token' => $token]);
+		return view('frontend.auth.password.reset', ['token' => $token]);
 	}
 
 	/**
