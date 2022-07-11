@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\Auth\{AuthController, SocialAuthController, ForgotPasswordController, VerificationController};
+use App\Http\Controllers\Frontend\Auth\AuthController;
+use App\Http\Controllers\Frontend\Auth\ForgotPasswordController;
+use App\Http\Controllers\Frontend\Auth\SocialAuthController;
+use App\Http\Controllers\Frontend\Auth\VerificationController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,4 +46,7 @@ Route::group(['middleware' => ['web']], function (){
 // Admin panel
 Route::group(['middleware' => ['auth', 'verified']], function () {
 	Route::get('/home', [HomeController::class, 'home'])->name('home');
+
+	// Env
+	Route::resource('env', \App\Http\Controllers\Backend\EnvController::class);
 });
