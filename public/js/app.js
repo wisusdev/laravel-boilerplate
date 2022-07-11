@@ -5382,9 +5382,9 @@ $(document).ready(function () {
   $('body').on('click', '#editEnv', function () {
     var id = $(this).data('id');
     $.get("/env/".concat(id, "/edit"), function (data) {
-      $('#postCrudModal').html("Editando registro");
+      $('#envTitleModal').html("Editando registro");
       $('#btnSave').val("editEnv");
-      $('#ajax-crud-modal').modal('show');
+      $('#envModal').modal('show');
       $('#key').val(data.body.key);
       $('#value').val(data.body.value.value);
     });
@@ -5402,7 +5402,12 @@ $(document).ready(function () {
         value: value
       },
       success: function success(response) {
-        var ht = "<th id=\"".concat(response.body.key, "\"><td>\"").concat(response.body.key, "\"</td><td>").concat(response.body.value, "</td></th>");
+        console.log(response.body);
+        var env = "<tr id=\"".concat(response.body.key, "\">\n\t\t\t\t\t<td>").concat(response.body.key, "</td>\n\t\t\t\t\t<th>").concat(response.body.value, "</th>\n\t\t\t\t\t<td><a href=\"javascript:void(0)\" id=\"editEnv\" data-id=\"").concat(response.body.key, "\" class=\"btn btn-primary btn-sm\">Editar</a></td>\n\t\t\t\t</tr>");
+        $("#".concat(response.body.key)).replaceWith(env);
+        $('#userForm').trigger("reset");
+        $('#envModal').modal('hide');
+        $('#btn-save').html('Save Changes');
       },
       error: function error(_error) {
         console.log(_error);
