@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+	<meta name="csrf-token" content="{{ csrf_token() }}" />
 	<title>{{ config('app.name') }}</title>
 	<link href="{{asset('css/app.css')}}" rel="stylesheet">
 </head>
 
 <body class="d-flex flex-column vh-100">
-
 	<div class="flex-fill" id="app">
 		@include('layouts.partials.navbar')
 
