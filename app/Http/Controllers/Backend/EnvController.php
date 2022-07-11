@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Jackiedo\DotenvEditor\Facades\DotenvEditor;
 
 class EnvController extends Controller
@@ -30,9 +30,7 @@ class EnvController extends Controller
 	 * @return \Illuminate\Http\JsonResponse
 	 */
 	public function update(Request $request){
-
 		DotenvEditor::setKey($request->key, $request->value)->save();
-
 		return response()->json(['status' => 'success', 'body' => ['key' => $request->key, 'value' => $request->value]]);
 	}
 }
