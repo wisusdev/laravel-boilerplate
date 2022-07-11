@@ -25,7 +25,6 @@ return new class extends Migration
 			$table->string('provider_id')->nullable();
 			$table->string('access_token')->nullable();
 
-
             $table->rememberToken();
             $table->timestamps();
 			$table->softDeletes();
