@@ -64,7 +64,7 @@
 								</div>
 							</form>
 
-							@include('auth.social-auth')
+							@include('frontend.auth.social-auth')
 
 							<div class="py-3 d-flex justify-content-between">
 								<a href="{{ route('login') }}" class="text-center text-decoration-none">{{__('global.i_have_an_account')}}</a>
