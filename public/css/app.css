@@ -2222,10 +2222,6 @@ progress {
   color: #6c757d;
   opacity: 1;
 }
-.form-control:-ms-input-placeholder {
-  color: #6c757d;
-  opacity: 1;
-}
 .form-control::placeholder {
   color: #6c757d;
   opacity: 1;
@@ -2683,17 +2679,10 @@ textarea.form-control-lg {
 .form-floating > .form-control::-moz-placeholder {
   color: transparent;
 }
-.form-floating > .form-control:-ms-input-placeholder {
-  color: transparent;
-}
 .form-floating > .form-control::placeholder {
   color: transparent;
 }
 .form-floating > .form-control:not(:-moz-placeholder-shown) {
-  padding-top: 1.625rem;
-  padding-bottom: 0.625rem;
-}
-.form-floating > .form-control:not(:-ms-input-placeholder) {
   padding-top: 1.625rem;
   padding-bottom: 0.625rem;
 }
@@ -2710,10 +2699,6 @@ textarea.form-control-lg {
   padding-bottom: 0.625rem;
 }
 .form-floating > .form-control:not(:-moz-placeholder-shown) ~ label {
-  opacity: 0.65;
-  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
-}
-.form-floating > .form-control:not(:-ms-input-placeholder) ~ label {
   opacity: 0.65;
   transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
 }
@@ -2997,8 +2982,7 @@ textarea.form-control-lg {
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
-      user-select: none;
+  user-select: none;
   background-color: transparent;
   border: 1px solid transparent;
   padding: 0.375rem 0.75rem;
@@ -5410,8 +5394,7 @@ textarea.form-control-lg {
   pointer-events: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
-      user-select: none;
+  user-select: none;
   opacity: 0.25;
 }
 
@@ -7893,15 +7876,13 @@ textarea.form-control-lg {
 .user-select-auto {
   -webkit-user-select: auto !important;
   -moz-user-select: auto !important;
-  -ms-user-select: auto !important;
-      user-select: auto !important;
+  user-select: auto !important;
 }
 
 .user-select-none {
   -webkit-user-select: none !important;
   -moz-user-select: none !important;
-  -ms-user-select: none !important;
-      user-select: none !important;
+  user-select: none !important;
 }
 
 .pe-none {
@@ -11283,14 +11264,15 @@ textarea.form-control-lg {
 }
 @font-face {
   font-family: "bootstrap-icons";
-  src: url(/fonts/vendor/bootstrap-icons/bootstrap-icons.woff2?a13b815539b49de48d2358b4281b2f1a) format("woff2"),
-url(/fonts/vendor/bootstrap-icons/bootstrap-icons.woff?c1d7432ee75fa194e49925c1b9009cb0) format("woff");
+  src: url(/fonts/vendor/bootstrap-icons/bootstrap-icons.woff2?f2539a501be3a673de05437f73913ca3) format("woff2"),
+url(/fonts/vendor/bootstrap-icons/bootstrap-icons.woff?7ff3ca6fa798de3f8ac2251c7ed9c581) format("woff");
 }
 
 .bi::before,
 [class^="bi-"]::before,
 [class*=" bi-"]::before {
   display: inline-block;
+  font-display: block;
   font-family: bootstrap-icons !important;
   font-style: normal;
   font-weight: normal !important;
