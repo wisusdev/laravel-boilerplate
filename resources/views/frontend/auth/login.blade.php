@@ -42,11 +42,10 @@
 							@include('frontend.auth.social-auth')
 
 							<div class="py-3 d-flex justify-content-between">
-								<a class="btn btn-link text-decoration-none"
-								   href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
-
-								<a class="btn btn-link text-decoration-none"
-								   href="{{ route('register') }}">{{ __('Register') }}</a>
+								<a class="btn btn-link text-decoration-none" href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
+								@if(env('ENABLE_REGISTER'))
+									<a class="btn btn-link text-decoration-none" href="{{ route('register') }}">{{ __('Register') }}</a>
+								@endif
 							</div>
 
 						</div>

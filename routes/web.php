@@ -26,8 +26,10 @@ Route::group(['middleware' => ['web']], function (){
 	Route::post('login', [AuthController::class, 'login'])->name('login.user');
 	Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-	Route::get('register', [AuthController::class, 'showRegistrationForm'])->name('register');
-	Route::post('register', [AuthController::class, 'register'])->name('register.user');
+	if (env('ENABLE_REGISTER')) {
+		Route::get('register', [AuthController::class, 'showRegistrationForm'])->name('register');
+		Route::post('register', [AuthController::class, 'register'])->name('register.user');
+	}
 
 	Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 	Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
