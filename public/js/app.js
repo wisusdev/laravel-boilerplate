@@ -5414,17 +5414,17 @@ $(document).ready(function () {
       }
     });
   });
-  $('body').on('click', '.delete-post', function () {
-    var post_id = $(this).data("id");
+  $('body').on('click', '#deleteEnv', function () {
+    var id = $(this).data('id');
     confirm("Are You sure want to delete !");
     $.ajax({
       type: "DELETE",
-      url: "{{ url('ajax-posts')}}" + '/' + post_id,
-      success: function success(data) {
-        $("#post_id_" + post_id).remove();
+      url: "/env/".concat(id),
+      success: function success(response) {
+        $("#" + id).remove();
       },
-      error: function error(data) {
-        console.log('Error:', data);
+      error: function error(response) {
+        console.log('Error:', response);
       }
     });
   });
