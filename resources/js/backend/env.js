@@ -9,9 +9,9 @@ $(document).ready(function () {
 		let id = $(this).data('id');
 
 		$.get(`/env/${id}/edit`, function (data) {
-			$('#postCrudModal').html("Editando registro");
+			$('#envTitleModal').html("Editando registro");
 			$('#btnSave').val("editEnv");
-			$('#ajax-crud-modal').modal('show');
+			$('#envModal').modal('show');
 
 			$('#key').val(data.body.key);
 			$('#value').val(data.body.value.value);
@@ -29,7 +29,20 @@ $(document).ready(function () {
 			cache: false,
 			data: {key, value},
 			success: function (response) {
-				var ht = `<th id="${response.body.key}"><td>"${response.body.key}"</td><td>${response.body.value}</td></th>`;
+				console.log(response.body);
+
+				let env = `<tr id="${response.body.key}">
+					<td>${response.body.key}</td>
+					<th>${response.body.value}</th>
+					<td><a href="javascript:void(0)" id="editEnv" data-id="${response.body.key}" class="btn btn-primary btn-sm">Editar</a></td>
+				</tr>`;
+				
+				$(`#${response.body.key}`).replaceWith(env);
+
+				$('#userForm').trigger("reset");
+				$('#envModal').modal('hide');
+				$('#btn-save').html('Save Changes');
+
 			},
 			error: function (error) {
 				console.log(error);
@@ -38,18 +51,18 @@ $(document).ready(function () {
 
 	});
 
-	$('body').on('click', '.delete-post', function () {
-		var post_id = $(this).data("id");
+	$('body').on('click', '#deleteEnv', function () {
+		let id = $(this).data('id');
 		confirm("Are You sure want to delete !");
 
 		$.ajax({
 			type: "DELETE",
-			url: "{{ url('ajax-posts')}}"+'/'+post_id,
-			success: function (data) {
-				$("#post_id_" + post_id).remove();
+			url: `/env/${id}`,
+			success: function (response) {
+				$("#" + id).remove();
 			},
-			error: function (data) {
-				console.log('Error:', data);
+			error: function (response) {
+				console.log('Error:', response);
 			}
 		});
 	});
