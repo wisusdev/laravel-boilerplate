@@ -6,10 +6,10 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
+					<a class="nav-link active" aria-current="page" href="{{route('home')}}">Inicio</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Setting</a>
+					<a class="nav-link" href="{{route('setting.index')}}">Setting</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{route('env.index')}}">Env</a>

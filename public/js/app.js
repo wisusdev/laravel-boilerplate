@@ -5432,6 +5432,32 @@ $(document).ready(function () {
 
 /***/ }),
 
+/***/ "./resources/js/backend/settings.js":
+/*!******************************************!*\
+  !*** ./resources/js/backend/settings.js ***!
+  \******************************************/
+/***/ (() => {
+
+$(document).ready(function () {
+  $.ajaxSetup({
+    headers: {
+      "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+    }
+  });
+  $('body').on('click', '#editSetting', function () {
+    var id = $(this).data('id');
+    $.get("/setting/".concat(id, "/edit"), function (data) {
+      $('#settingTitleModal').html("Editando registro");
+      $('#btnSave').val("edit");
+      $('#settingModal').modal('show');
+      $('#key').val(data.body.key);
+      $('#value').val(data.body.value);
+    });
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/bootstrap.js":
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
@@ -5452,6 +5478,8 @@ try {
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
 
   __webpack_require__(/*! ./backend/env.js */ "./resources/js/backend/env.js");
+
+  __webpack_require__(/*! ./backend/settings.js */ "./resources/js/backend/settings.js");
 } catch (error) {
   console.log(error);
 }

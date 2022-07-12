@@ -26,7 +26,7 @@ Route::group(['middleware' => ['web']], function (){
 	Route::post('login', [AuthController::class, 'login'])->name('login.user');
 	Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-	if (env('ENABLE_REGISTER')) {
+	if (config('envi.register')) {
 		Route::get('register', [AuthController::class, 'showRegistrationForm'])->name('register');
 		Route::post('register', [AuthController::class, 'register'])->name('register.user');
 	}
@@ -50,5 +50,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 	Route::get('/home', [HomeController::class, 'home'])->name('home');
 
 	// Env
-	Route::resource('env', \App\Http\Controllers\Backend\EnvController::class);
+	Route::resource('env', \App\Http\Controllers\Backend\EnvController::class, ['except' => ['create', 'store', 'show', 'destroy']]);
+
+	// Settings
+	Route::resource('setting', \App\Http\Controllers\Backend\SettingController::class);
 });
