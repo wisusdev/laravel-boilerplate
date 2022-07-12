@@ -1,3 +1,7 @@
 .min-vh-75 {
     min-height: 75vh !important;
 }
+
+.logo-nav {
+    width: 34px;
+}

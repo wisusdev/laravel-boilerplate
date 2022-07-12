@@ -1,7 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-black">
 	<div class="container">
 		<a href="{{route('welcome')}}" class="navbar-brand font-weight-bold">
-			{{ config('app.name') }}
+			@if(setting('logo'))
+				<img src="{{setting('logo')}}" alt="logo" class="img-fluid logo-nav">							
+			@else
+				{{ config('app.name') }}
+			@endif
 		</a>
 		<!--<a class="navbar-brand" href="#">Navbar</a>-->
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

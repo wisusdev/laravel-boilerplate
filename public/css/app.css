@@ -12972,3 +12972,7 @@ url(/fonts/vendor/bootstrap-icons/bootstrap-icons.woff?7ff3ca6fa798de3f8ac2251c7
     min-height: 75vh !important;
 }
 
+.logo-nav {
+    width: 34px;
+}
+
