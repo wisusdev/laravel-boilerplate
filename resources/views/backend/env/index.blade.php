@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-	<div class="container py-5">
+	<div class="container py-3">
 		<div class="alert alert-warning" role="alert">
 			<p class="my-0"><i class="bi bi-exclamation-triangle"></i> ¡Cuidado!, antes de modificar algún valor, asegurate de saber lo que estas haciendo.</p>
 		</div>
