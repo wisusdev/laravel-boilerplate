@@ -53,5 +53,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 	Route::resource('env', \App\Http\Controllers\Backend\EnvController::class, ['except' => ['create', 'store', 'show', 'destroy']]);
 
 	// Settings
-	Route::resource('setting', \App\Http\Controllers\Backend\SettingController::class);
+	Route::resource('setting', \App\Http\Controllers\Backend\SettingController::class, ['except' => ['create', 'edit', 'show', 'destroy']]);
+
+	// Permisions
+	Route::resource('permissions', \App\Http\Controllers\Backend\PermissionsController::class);
+
+	// Roles
+	Route::resource('roles', \App\Http\Controllers\Backend\RolesController::class);
 });
