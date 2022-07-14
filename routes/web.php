@@ -60,4 +60,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
 	// Roles
 	Route::resource('roles', \App\Http\Controllers\Backend\RolesController::class);
+
+	// Users
+	Route::resource('users', \App\Http\Controllers\Backend\UserController::class);
 });
