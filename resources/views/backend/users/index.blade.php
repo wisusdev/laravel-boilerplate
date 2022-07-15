@@ -10,7 +10,9 @@
                         {{__('global.title')}}
                     </div>
                     <div class="float-end">
-                        <a href="{{ route('users.create') }}" class="btn btn-success btn-sm" title="{{__('global.create')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{__('global.create')}}</a>
+                        @can('users.create')
+                            <a href="{{ route('users.create') }}" class="btn btn-success btn-sm" title="{{__('global.create')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{__('global.create')}}</a>
+                        @endcan
                     </div>
                 </div>
             </div>
@@ -38,15 +40,21 @@
                                     <td>{{$user->email_verified_at}}</td>
                                     <td>{{$user->email_verified_at}}</td>
                                     <td>{{$user->update_at}}</td>
-                                    <td><a href="{{route('users.edit', $user->id)}}" class="btn btn-primary btn-sm">{{__('global.edit')}}</a></td>
                                     <td>
-                                        <form method="POST" action="{{ route('users.destroy', $user->id) }}" accept-charset="UTF-8">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger btn-sm" title="{{__('global.delete')}}" onclick="return confirm(&quot;{{ __('global.confirm_delete') }}&quot;)">
-                                                {{__('global.delete')}}
-                                            </button>
-                                        </form>
+                                        @can('users.edit')
+                                            <a href="{{route('users.edit', $user->id)}}" class="btn btn-primary btn-sm">{{__('global.edit')}}</a>
+                                        @endcan
+                                    </td>
+                                    <td>
+                                        @can('users.delete')    
+                                            <form method="POST" action="{{ route('users.destroy', $user->id) }}" accept-charset="UTF-8">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger btn-sm" title="{{__('global.delete')}}" onclick="return confirm(&quot;{{ __('global.confirm_delete') }}&quot;)">
+                                                    {{__('global.delete')}}
+                                                </button>
+                                            </form>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
