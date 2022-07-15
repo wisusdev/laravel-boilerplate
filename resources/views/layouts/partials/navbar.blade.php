@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-black">
 	<div class="container">
-		<a href="{{route('welcome')}}" class="navbar-brand font-weight-bold">
+		<a href="{{route('home')}}" class="navbar-brand font-weight-bold">
 			@if(setting('logo'))
 				<img src="{{setting('logo')}}" alt="logo" class="img-fluid logo-nav">							
 			@else
@@ -8,10 +8,10 @@
 			@endif
 		</a>
 		<!--<a class="navbar-brand" href="#">Navbar</a>-->
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<div class="collapse navbar-collapse" id="navbarMain">
 			<ul class="navbar-nav me-auto">
 
 			</ul>

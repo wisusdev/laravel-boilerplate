@@ -6,17 +6,19 @@
 		</div>
 		<div class="card">
 			<div class="card-body">
-				<table class="table">
-					<tbody>
-						@foreach($keys as $id => $key)
-							<tr id="{{$id}}">
-								<td>{{$id}}</td>
-								<th>{{$key['value']}}</th>
-								<td><a href="javascript:void(0)" id="editEnv" data-id="{{ $id }}" class="btn btn-primary btn-sm">Editar</a></td>
-							</tr>
-						@endforeach
-					</tbody>
-				</table>
+				<div class="table-responsive">
+					<table class="table">
+						<tbody>
+							@foreach($keys as $id => $key)
+								<tr id="{{$id}}">
+									<td>{{$id}}</td>
+									<th>{{$key['value']}}</th>
+									<td><a href="javascript:void(0)" id="editEnv" data-id="{{ $id }}" class="btn btn-primary btn-sm">{{__('global.edit')}}</a></td>
+								</tr>
+							@endforeach
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>

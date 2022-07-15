@@ -8,7 +8,7 @@
                     {{__('global.title')}}
                 </div>
                 <div>
-                    <a href="{{ route('roles.create') }}" class="btn btn-success"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{__('global.create')}}</a>
+                    <a href="{{ route('roles.create') }}" class="btn btn-success btn-sm"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{__('global.create')}}</a>
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@
                     <thead>
                         <tr>
                             <th>{{__('global.name')}}</th>
-                            <th>{{__('global.permission')}}</th>
+                            <th>{{__('global.permissions')}}</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
@@ -33,13 +33,13 @@
                                             <span class="badge bg-secondary">{{ $permission }}</span>
                                         @endforeach
                                     </td>
-                                    <td><a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary btn-sm">Editar</a></td>
+                                    <td><a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary btn-sm">{{__('global.edit')}}</a></td>
                                     <td>
                                         <form method="POST" action="{{ route('roles.destroy', $role->id) }}" accept-charset="UTF-8">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit" class="btn btn-danger btn-sm" title="{{__('global.delete')}}" onclick="return confirm(&quot;{{ __('global.confirm_delete') }}&quot;)">
-                                                Eliminar
+                                                {{__('global.delete')}}
                                             </button>
                                         </form>
                                     </td>

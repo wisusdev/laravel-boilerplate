@@ -23,8 +23,8 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="permission" class="form-label">{{__('global.permission')}}</label>
-                        <select class="form-control select2WithoutTags" multiple id="permission" name="permission[]" value="{{ old('permission') }}" required>
+                        <label for="permission" class="form-label">{{__('global.permissions')}}</label>
+                        <select class="form-control" multiple id="permission" name="permission[]" value="{{ old('permission') }}" required>
                             @foreach ($permissions as $permission)
                                 <option value="{{$permission}}" {{ collect(old('permission', optional($role->permissions)->pluck('name')))->contains($permission) ? 'selected' : '' }}>{{$permission}}</option>
                             @endforeach

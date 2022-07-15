@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="permission">{{__('global.permission')}}</label>
+                        <label for="permission">{{__('global.permissions')}}</label>
                         <select class="form-control" multiple id="permission" name="permission[]" value="{{ old('permission') }}" required>
                             @foreach ($permissions as $permission)
                                 <option value="{{$permission}}">{{$permission}}</option>
