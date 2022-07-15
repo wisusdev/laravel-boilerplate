@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -15,28 +16,28 @@ class UserController extends Controller
 		return view('backend.users.index', compact('users'));
 	}
 
-
-	public function create()
-	{
+	public function create(){
 		$roles = Role::pluck('name', 'id');
 		return view('backend.users.create', compact('roles'));
 	}
 
-
-	public function store(Request $request)
-	{
+	public function store(Request $request){
 		try {
+
 			$request->validate([
 				'name' => 'required|string',
-				'email' => 'required|email',
+				'username' => 'required|string|unique:users',
+				'email' => 'required|email|unique:users',
 				'password' => 'required|string|min:8|confirmed',
+				'roles' => 'required'
 			]);
 
-			$user = new User;
-			$user->name = $request->name;
-			$user->email = $request->email;
-			$user->password = Hash::make($request->password);
-			$user->save();
+			$user = User::create([
+				'name' => $request->input('name'),
+				'username' => $request->input('username'),
+				'email' => $request->input('email'),
+				'password' => Hash::make($request->input('password')),
+			]);
 
 			$roles = $request->input('roles') ? $request->input('roles') : [];
 			$user->assignRole($roles);
@@ -47,26 +48,25 @@ class UserController extends Controller
 		}
 	}
 
-	public function show($id)
-	{
+	public function show($id){
 		$users = User::findOrFail($id);
-
 		return view('backend.users.show', compact('users'));
 	}
 
-	public function edit($id)
-	{
+	public function edit($id){
 		$roles = Role::pluck('name', 'id');
-		$users = User::findOrFail($id);
-		return view('backend.users.edit', compact('users', 'roles'));
+		$user = User::findOrFail($id);
+		return view('backend.users.edit', compact('user', 'roles'));
 	}
 
-	public function update($id, Request $request)
-	{
+	public function update($id, Request $request){
 		try {
+
 			$request->validate([
 				'name' => 'required|string',
+				'username' => 'required|string',
 				'email' => 'required|email',
+				'roles' => 'required'
 			]);
 
 			$user = User::findOrFail($id);
@@ -86,7 +86,7 @@ class UserController extends Controller
 		try {
 			$users = User::findOrFail($id);
 			$users->delete();
-			return response()->json(['status' => 'warning', 'message' => __('global.successfully_destroy')]);
+			return redirect()->back()->with('success', __('global.successfully_destroy'));
 		} catch (\Throwable $th) {
 			return redirect()->back()->with('danger', "Error: " . $th->getMessage());
 		}
