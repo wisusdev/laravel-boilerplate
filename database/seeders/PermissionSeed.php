@@ -19,6 +19,9 @@ class PermissionSeed extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         $permissions = [
+			// Env
+			'env.index',
+			'env.edit',
             // Roles Permision
             'role.index',
             'role.create',
