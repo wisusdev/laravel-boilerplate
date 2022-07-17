@@ -8,6 +8,14 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionsController extends Controller
 {
+	function __construct(){
+		$this->middleware('permission:permission.index', ['only' => ['index']]);
+		$this->middleware('permission:permission.create', ['only' => ['create','store']]);
+		$this->middleware('permission:permission.edit', ['only' => ['edit','update']]);
+		$this->middleware('permission:permission.show', ['only' => ['show']]);
+		$this->middleware('permission:permission.delete', ['only' => ['destroy']]);
+	}
+
 	public function index() {
 		$permissions = Permission::get()->pluck('name', 'id');
 		return view('backend.permissions.index', compact('permissions'));
@@ -19,7 +27,6 @@ class PermissionsController extends Controller
 
 	public function store(Request $request){
 		Permission::create($request->all());
-
 		return redirect()->route('permissions.index')->with('success', __('global.successfully_added'));
 	}
 

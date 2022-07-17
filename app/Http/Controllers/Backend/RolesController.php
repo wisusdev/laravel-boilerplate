@@ -9,28 +9,25 @@ use Spatie\Permission\Models\Role;
 
 class RolesController extends Controller
 {
+	function __construct(){
+		$this->middleware('permission:role.index', ['only' => ['index']]);
+		$this->middleware('permission:role.create', ['only' => ['create','store']]);
+		$this->middleware('permission:role.edit', ['only' => ['edit','update']]);
+		$this->middleware('permission:role.show', ['only' => ['show']]);
+		$this->middleware('permission:role.delete', ['only' => ['destroy']]);
+	}
+
 	public function index(){
 		$roles = Role::paginate();
 		return view('backend.roles.index', compact('roles'));
 	}
 
-	/**
-	 * Show the form for creating new Role.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
 	public function create(){
 		$permissions = Permission::get()->pluck('name', 'name');
 		return view('backend.roles.create', compact('permissions'));
 	}
 
-	/**
-	 * Store a newly created Role in storage.
-	 *
-	 * @param  \App\Http\Requests\StoreRolesRequest  $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function store(StoreRolesRequest $request){
+	public function store(Request $request){
 		try{
 			$role = Role::create($request->except('permission'));
 			$permissions = $request->input('permission') ? $request->input('permission') : [];
@@ -42,26 +39,13 @@ class RolesController extends Controller
 		}
 	}
 
-
-	/**
-	 * Show the form for editing Role.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
 	public function edit($id){
 		$permissions = Permission::get()->pluck('name', 'name');
 		$role = Role::findOrFail($id);
 		return view('backend.roles.edit', compact('role', 'permissions'));
 	}
 
-	/**
-	 * Update Role in storage.
-	 *
-	 * @param  \App\Http\Requests\UpdateRolesRequest  $request
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
+
 	public function update(Request $request, $id){
 		try{
 			$role = Role::findOrFail($id);
@@ -75,13 +59,6 @@ class RolesController extends Controller
 		}
 	}
 
-
-	/**
-	 * Remove Role from storage.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
 	public function destroy($id){
 		$role = Role::findOrFail($id);
 		$role->delete();
