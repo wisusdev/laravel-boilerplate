@@ -1,9 +1,17 @@
 <?php
 
 return [
+	// Modules
+	'setting' => 'Setting',
+	'env' => 'Environment',
+	'role' => 'Role',
+	'user' => 'User',
+	'users' => 'Users',
+
 	//Actions
 	'create' => 'New',
 	'add' => 'Add',
+	'save' => 'Save',
 	'edit' => 'Edit',
 	'update' => 'Update',
 	'delete' => 'Delete',
@@ -20,17 +28,17 @@ return [
 	'roles' => 'Roles',
 	'permissions' => 'Permissions',
 
-	'or' => 'O',
-	'i_have_an_account' => 'Tengo una cuenta',
-	'google_analytics' => 'ID - Google Analytics',
-	'site_logo' => 'Website logo',
-	'description' => 'Description',
-	'general' => 'General',
-
 	//UI
 	'title' => 'Title',
 	'email_verified_at' => 'Verified mail',
 	'update_at' => 'Last update',
 	'return_back' => 'Go back',
-	
+
+	// Other
+	'or' => 'O',
+	'i_have_an_account' => 'I have an account',
+	'google_analytics' => 'ID - Google Analytics',
+	'site_logo' => 'Website logo',
+	'description' => 'Description',
+	'general' => 'General',
 ];
