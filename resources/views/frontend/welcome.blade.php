@@ -1,34 +1,17 @@
 @extends('layouts.app')
 @section('content')
-	<section class="py-5">
+	<section class="h-75 d-flex align-items-center">
 		<div class="container">
-			<h2 class="mb-3">Tiendas</h2>
 			<div class="row">
-				<div class="col-md-3">
-					<div class="card">
-						<img src="https://dummyimage.com/1280x1280/000/fff" alt="" class="card-img-top">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="py-5">
-		<div class="container">
-			<h2 class="mb-3">Productos populares</h2>
-			<div class="row">
-				<div class="col-md-3">
-					<div class="card">
-						<img src="https://dummyimage.com/1280x1280/000/fff" alt="" class="card-img-top">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						</div>
-					</div>
+				<div class="col-md-6">
+					<h2 class="display-2">Never Stop To </h2>
+					<h3 class="fs-1">Exploring The World</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat.
+					</p>
+					<a href="{{ route('home') }}" class="btn btn-outline-dark">Explore</a>
 				</div>
 			</div>
 		</div>
