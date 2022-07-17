@@ -10,8 +10,10 @@ try {
 	window.Popper = require('popper.js').default;
 	window.$ = window.jQuery = require('jquery');
 	require('bootstrap');
+	window.Swal = require('sweetalert2');
 
 	require('./backend/env.js');
+	require('./backend/addons.js');
 } catch (error) {
 	console.log(error)
 }

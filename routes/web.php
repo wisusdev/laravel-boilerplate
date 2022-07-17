@@ -51,19 +51,19 @@ Route::group(['middleware' => ['web']], function (){
 // Admin panel
 Route::group(['middleware' => ['auth', 'verified']], function () {
 	Route::get('/home', [HomeController::class, 'home'])->name('home');
-
 	// Env
 	Route::resource('env', \App\Http\Controllers\Backend\EnvController::class, ['except' => ['create', 'store', 'show', 'destroy']]);
-
 	// Settings
 	Route::resource('setting', \App\Http\Controllers\Backend\SettingController::class, ['except' => ['create', 'edit', 'show', 'destroy']]);
-
-	// Permisions
+	// Permissions
 	Route::resource('permissions', \App\Http\Controllers\Backend\PermissionsController::class);
-
 	// Roles
 	Route::resource('roles', \App\Http\Controllers\Backend\RolesController::class);
-
 	// Users
 	Route::resource('users', \App\Http\Controllers\Backend\UserController::class);
+	// Addons
+	Route::resource('addons', \App\Http\Controllers\Backend\AddonsController::class);
+	Route::post('addons/active', [App\Http\Controllers\Backend\AddonsController::class, 'active'])->name('addons.active');
+	Route::post('addons/migrate/{addon}', [App\Http\Controllers\Backend\AddonsController::class, 'migrate'])->name('addons.migrate');
+	Route::get('addons/download/{addon}', [App\Http\Controllers\Backend\AddonsController::class, 'download'])->name('addons.download');
 });

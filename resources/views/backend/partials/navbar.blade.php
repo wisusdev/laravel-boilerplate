@@ -8,6 +8,10 @@
 				<li class="nav-item">
 					<a class="nav-link {{ request()->routeIs('users.index') ? 'active' : ''}}" href="{{route('users.index')}}"><i class="bi bi-person"></i> {{__('global.users')}}</a>
 				</li>
+
+				<li class="nav-item">
+					<a class="nav-link {{ request()->routeIs('addons.index') ? 'active' : ''}}" href="{{route('addons.index')}}"><i class="bi bi-puzzle-fill"></i> {{__('global.addons')}}</a>
+				</li>
 			</ul>
 		</div>
 	</div>
