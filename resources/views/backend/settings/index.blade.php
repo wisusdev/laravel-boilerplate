@@ -5,7 +5,7 @@
             @csrf
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">{{__('global.general')}}</h3>
+                    <p class="fw-bold m-0">{{__('global.setting')}}</p>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -28,40 +28,11 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="form-group mb-0">
+                    <div class="float-end">
                         <button type="submit" class="btn btn-primary">{{__('global.update')}}</button>
                     </div>
                 </div>
             </div>
         </form>
     </div>
-    
-    <div class="modal fade" id="settingModal" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="settingTitleModal"></h4>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<form id="settingForm" name="settingForm" class="form-horizontal">
-
-						<div class="mb-3">
-							<label for="name" class="form-label">Llave</label>
-							<input type="text" class="form-control" id="key" name="key" value="" required="" readonly>
-						</div>
-
-						<div class="mb-3">
-							<label class="form-label">Valor</label>
-							<input class="form-control" id="value" name="value" value="" required="">
-						</div>
-
-						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-primary" id="btnSave" value="create">Actualizar</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
 @endsection

@@ -5,10 +5,12 @@
         <div class="card-header">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
-                    {{__('global.title')}}
+                   <p class="fw-bold m-0">{{__('global.roles')}}</p>
                 </div>
                 <div>
-                    <a href="{{ route('roles.create') }}" class="btn btn-success btn-sm"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{__('global.create')}}</a>
+                    @can('role.create')
+                    <a href="{{ route('roles.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{__('global.create')}}</a>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -33,15 +35,21 @@
                                             <span class="badge bg-secondary">{{ $permission }}</span>
                                         @endforeach
                                     </td>
-                                    <td><a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary btn-sm">{{__('global.edit')}}</a></td>
                                     <td>
+                                        @can('role.edit')
+                                        <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-outline-primary btn-sm">{{__('global.edit')}}</a>
+                                        @endcan
+                                    </td>
+                                    <td>
+                                        @can('role.delete')
                                         <form method="POST" action="{{ route('roles.destroy', $role->id) }}" accept-charset="UTF-8">
                                             @method('DELETE')
                                             @csrf
-                                            <button type="submit" class="btn btn-danger btn-sm" title="{{__('global.delete')}}" onclick="return confirm(&quot;{{ __('global.confirm_delete') }}&quot;)">
+                                            <button type="submit" class="btn btn-outline-danger btn-sm" title="{{__('global.delete')}}" onclick="return confirm(&quot;{{ __('global.confirm_delete') }}&quot;)">
                                                 {{__('global.delete')}}
                                             </button>
                                         </form>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
