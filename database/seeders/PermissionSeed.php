@@ -22,6 +22,14 @@ class PermissionSeed extends Seeder
 			// Env
 			'env.index',
 			'env.edit',
+			// Addons Permision
+			'addons.index',
+			'addons.create',
+			'addons.show',
+			'addons.edit',
+			'addons.delete',
+			'addons.download',
+			'addons.migrate',
             // Roles Permision
             'role.index',
             'role.create',
