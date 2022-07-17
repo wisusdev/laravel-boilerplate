@@ -5432,28 +5432,22 @@ $(document).ready(function () {
 
 /***/ }),
 
-/***/ "./resources/js/backend/settings.js":
-/*!******************************************!*\
-  !*** ./resources/js/backend/settings.js ***!
-  \******************************************/
+/***/ "./resources/js/backend/sidebar.js":
+/*!*****************************************!*\
+  !*** ./resources/js/backend/sidebar.js ***!
+  \*****************************************/
 /***/ (() => {
 
-$(document).ready(function () {
-  $.ajaxSetup({
-    headers: {
-      "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-    }
-  });
-  $('body').on('click', '#editSetting', function () {
-    var id = $(this).data('id');
-    $.get("/setting/".concat(id, "/edit"), function (data) {
-      $('#settingTitleModal').html("Editando registro");
-      $('#btnSave').val("edit");
-      $('#settingModal').modal('show');
-      $('#key').val(data.body.key);
-      $('#value').val(data.body.value);
+window.addEventListener('DOMContentLoaded', function (event) {
+  var sidebarToggle = document.body.querySelector('#sidebarToggle');
+
+  if (sidebarToggle) {
+    sidebarToggle.addEventListener('click', function (event) {
+      event.preventDefault();
+      document.body.classList.toggle('sb-sidenav-toggled');
+      localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
     });
-  });
+  }
 });
 
 /***/ }),
@@ -5477,9 +5471,9 @@ try {
 
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
 
-  __webpack_require__(/*! ./backend/env.js */ "./resources/js/backend/env.js");
+  __webpack_require__(/*! ./backend/sidebar.js */ "./resources/js/backend/sidebar.js");
 
-  __webpack_require__(/*! ./backend/settings.js */ "./resources/js/backend/settings.js");
+  __webpack_require__(/*! ./backend/env.js */ "./resources/js/backend/env.js");
 } catch (error) {
   console.log(error);
 }
