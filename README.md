@@ -1,10 +1,3 @@
-
-# IRAYOL
-
-IRAYOL is a Wordpress style CMS with easy to install modules, themes, configure menus, among other options.
-
-
-
 ## 🧩 Related
 
 Here are some related projects
