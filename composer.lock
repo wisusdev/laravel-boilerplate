@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e721eec053356249aa77b4cb0c18c70b",
+    "content-hash": "9c311ab6e05631f4927d2936fc863a3f",
     "packages": [
         {
             "name": "anlutro/l4-settings",
@@ -1920,6 +1920,67 @@
             "time": "2022-04-15T14:02:14+00:00"
         },
         {
+            "name": "madnest/madzipper",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/madnest/madzipper.git",
+                "reference": "fd535f180cb12eda336fc3515a08b332286f0aaf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/madnest/madzipper/zipball/fd535f180cb12eda336fc3515a08b332286f0aaf",
+                "reference": "fd535f180cb12eda336fc3515a08b332286f0aaf",
+                "shasum": ""
+            },
+            "require": {
+                "ext-zip": "*",
+                "illuminate/filesystem": "^9.0",
+                "illuminate/support": "^9.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4.4",
+                "nunomaduro/collision": "^6.0",
+                "orchestra/testbench": "^7.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Madnest\\Madzipper\\MadzipperServiceProvider"
+                    ],
+                    "aliases": {
+                        "Madzipper": "Madnest\\Madzipper\\Madzipper"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Madnest\\Madzipper\\": "src/Madnest/Madzipper"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jakub Theimer",
+                    "email": "theimer@madne.st",
+                    "homepage": "https://madne.st",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Wannabe successor of Chumper/Zipper package for Laravel",
+            "support": {
+                "issues": "https://github.com/madnest/madzipper/issues",
+                "source": "https://github.com/madnest/madzipper/tree/v1.3.1"
+            },
+            "time": "2022-02-22T16:35:05+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "2.7.0",
             "source": {
@@ -2327,6 +2388,87 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v4.14.0"
             },
             "time": "2022-05-31T20:59:12+00:00"
+        },
+        {
+            "name": "nwidart/laravel-modules",
+            "version": "9.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nWidart/laravel-modules.git",
+                "reference": "5483801843f653df5ffd074da373508f4d3925c9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nWidart/laravel-modules/zipball/5483801843f653df5ffd074da373508f4d3925c9",
+                "reference": "5483801843f653df5ffd074da373508f4d3925c9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.6",
+                "laravel/framework": "^9.0",
+                "mockery/mockery": "^1.4",
+                "orchestra/testbench": "^7.0",
+                "phpstan/phpstan": "^1.4",
+                "phpunit/phpunit": "^9.5",
+                "spatie/phpunit-snapshot-assertions": "^4.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nwidart\\Modules\\LaravelModulesServiceProvider"
+                    ],
+                    "aliases": {
+                        "Module": "Nwidart\\Modules\\Facades\\Module"
+                    }
+                },
+                "branch-alias": {
+                    "dev-master": "9.0-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Nwidart\\Modules\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Widart",
+                    "email": "n.widart@gmail.com",
+                    "homepage": "https://nicolaswidart.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Module management",
+            "keywords": [
+                "laravel",
+                "module",
+                "modules",
+                "nwidart",
+                "rad"
+            ],
+            "support": {
+                "issues": "https://github.com/nWidart/laravel-modules/issues",
+                "source": "https://github.com/nWidart/laravel-modules/tree/9.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/nwidart",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-02-28T13:17:36+00:00"
         },
         {
             "name": "phpoption/phpoption",
