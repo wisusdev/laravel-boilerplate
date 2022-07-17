@@ -11,4 +11,9 @@ class HomeController
 	public function home(){
 		return view('backend.home');
 	}
+
+	public function swap($lang){
+		session()->put('locale', $lang);
+		return redirect()->back();
+	}
 }

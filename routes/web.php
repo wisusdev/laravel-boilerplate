@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
+// Change languaje
+Route::get('lang/{lang}', [HomeController::class, 'swap'])->name('lang.swap');
+
 // Auth
 Route::group(['middleware' => ['web']], function (){
 	Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');

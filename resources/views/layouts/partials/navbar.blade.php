@@ -2,7 +2,7 @@
 	<div class="container">
 		<a href="{{route('home')}}" class="navbar-brand font-weight-bold">
 			@if(setting('logo'))
-				<img src="{{setting('logo')}}" alt="logo" class="img-fluid logo-nav">							
+				<img src="{{setting('logo')}}" alt="logo" class="img-fluid logo-nav">
 			@else
 				{{ config('app.name') }}
 			@endif
@@ -16,7 +16,22 @@
 
 			</ul>
 			<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
-
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarLang" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						<i class="bi bi-translate"></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarLang">
+						@if (config('envi.status') && count(config('envi.languages')) > 1)
+							@foreach (array_keys(config('envi.languages')) as $lang)
+								@if ($lang != App::getLocale())
+									<a class="dropdown-item" href="{!! route('lang.swap', $lang) !!}">
+										{{ strtoupper($lang) }} - {{ config('envi.languages')[$lang][3] }}
+									</a>
+								@endif
+							@endforeach
+						@endif
+					</div>
+				</li>
 				@guest
 					<li class="nav-item">
 						<a class="nav-link" href="{{route('login')}}">{{__('Login')}}</a>
@@ -32,7 +47,18 @@
 							<i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
 						</a>
 						<ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="#">Something else here</a></li>
+							@can('setting.index')
+								<li><a class="dropdown-item {{ request()->routeIs('setting.index') ? 'active' : ''}}" href="{{ route('setting.index') }}">{{__('global.setting')}}</a></li>
+							@endcan
+
+							@can('env.index')
+								<li><a class="dropdown-item {{ request()->routeIs('env.index') ? 'active' : ''}}" href="{{ route('env.index') }}">{{__('global.env')}}</a></li>
+							@endcan
+
+							@can('role.index')
+								<li><a class="dropdown-item {{ request()->routeIs('roles.index') ? 'active' : ''}}" href="{{ route('roles.index') }}">{{__('global.roles')}}</a></li>
+							@endcan
+							
 							<li><hr class="dropdown-divider"></li>
 							<li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
 							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
