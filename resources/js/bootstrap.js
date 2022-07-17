@@ -12,7 +12,6 @@ try {
 	require('bootstrap');
 
 	require('./backend/env.js');
-	require('./backend/settings.js');
 } catch (error) {
 	console.log(error)
 }
