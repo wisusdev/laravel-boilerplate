@@ -21,7 +21,7 @@ Here are some related projects
 
   php artisan key:generate
 
-  php artisan migrate
+  php artisan migrate --seed
 
   php artisan storage:link
   
