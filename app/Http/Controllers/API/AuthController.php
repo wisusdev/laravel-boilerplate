@@ -5,47 +5,73 @@ namespace App\Http\Controllers\API;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\API\BaseController as BaseController;
+use Illuminate\Support\Facades\Validator;
 
 
 class AuthController extends BaseController
 {
 
-	public function login(Request $request)
-	{
-		if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-			$auth = Auth::user();
-			$success['token'] =  $auth->createToken('LaravelSanctumAuth')->plainTextToken;
-			$success['name'] =  $auth->name;
+	public function login(Request $request){
+        //valida las credenciales del usuario
+        if (!Auth::attempt($request->only('email', 'password'))){
+			return $this->handleError('Unauthorised.', ['error'=>'Unauthorised'], 401);
+        }
 
-			return $this->handleResponse($success, 'User logged-in!');
-		}
-		else{
-			return $this->handleError('Unauthorised.', ['error'=>'Unauthorised']);
-		}
-	}
+        //Busca al usuario en la base de datos
+        $user = User::where('email', $request['email'])->firstOrFail();
 
-	public function register(Request $request)
-	{
-		$validator = Validator::make($request->all(), [
-			'name' => 'required',
-			'email' => 'required|email',
-			'password' => 'required',
-			'confirm_password' => 'required|same:password',
+        //Genera un nuevo token para el usuario
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        //devuelve una respuesta JSON con el token generado y el tipo de token
+        $success = [
+            'access_token' => $token,
+            'token_type' => 'Bearer'
+        ];
+
+		return $this->handleResponse($success, 'User logged-in!');
+    }
+
+	public function register(Request $request){
+
+        //se valida la información que viene en $request
+		$validatedData = Validator::make($request->all(), [
+			'name' => ['required', 'string', 'max:255'],
+			'username' => ['required', 'string', 'max:255', 'unique:users'],
+			'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+			'password' => ['required', 'string', 'min:8', 'confirmed'],
 		]);
 
-		if($validator->fails()){
-			return $this->handleError($validator->errors());
+		if($validatedData->fails()){
+			return $this->handleError($validatedData->errors());
 		}
 
-		$input = $request->all();
-		$input['password'] = bcrypt($input['password']);
-		$user = User::create($input);
-		$success['token'] =  $user->createToken('LaravelSanctumAuth')->plainTextToken;
-		$success['name'] =  $user->name;
+        //se crea el usuario en la base de datos
+        $user = User::create([
+            'name' => $request->name,
+			'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+
+        //se crea token de acceso personal para el usuario
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        //se devuelve una respuesta JSON con el token generado y el tipo de token
+        $success = [
+            'access_token' => $token,
+            'token_type' => 'Bearer'
+        ];
 
 		return $this->handleResponse($success, 'User successfully registered!');
-	}
+
+    }
+
+	public function logout(Request $request){
+		$request->user()->tokens()->delete();
+		return response()->json(['message' => 'success'], 200);
+    }
 
 }
