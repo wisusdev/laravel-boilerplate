@@ -26,12 +26,13 @@ class AuthController extends BaseController
         $token = $user->createToken('auth_token')->plainTextToken;
 
         //devuelve una respuesta JSON con el token generado y el tipo de token
-        $success = [
+        $data = [
             'access_token' => $token,
-            'token_type' => 'Bearer'
+            'token_type' => 'Bearer',
+            'user' => $user,
         ];
 
-		return $this->handleResponse($success, 'User logged-in!');
+		return $this->handleResponse($data, 'User logged-in!');
     }
 
 	public function register(Request $request){
@@ -66,7 +67,6 @@ class AuthController extends BaseController
         ];
 
 		return $this->handleResponse($success, 'User successfully registered!');
-
     }
 
 	public function logout(Request $request){
