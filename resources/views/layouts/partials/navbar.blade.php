@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-black">
 	<div class="container">
 		<a href="{{route('home')}}" class="navbar-brand font-weight-bold">
-			@if(setting('logo'))
+			@if(Schema::hasTable('setting'))
 				<img src="{{setting('logo')}}" alt="logo" class="img-fluid logo-nav">
 			@else
 				{{ config('app.name') }}
